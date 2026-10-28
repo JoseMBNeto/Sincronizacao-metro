@@ -28,3 +28,31 @@ void station_init(Station *station){
     station->passageiros_esperando = 0;
     station->passageiros_embarcando = 0;
 }
+
+void station_wait_for_car(Station *station)
+{
+    pthread_mutex_lock(&station->lock);
+    station->passageiros_esperando++;
+
+    while (station->assentos_livres == 0){
+        pthread_cond_wait(&station->vagao_chegou, &station->lock);
+    }
+    
+    station->passageiros_esperando--;
+    station->assentos_livres--;
+    station->passageiros_embarcando++;
+    pthread_mutex_unlock(&station->lock);
+}
+
+void station_on_board(Station *station)
+{
+    pthread_mutex_lock(&station->lock);
+
+    station->passageiros_embarcando--;
+
+    if (station->passageiros_embarcando == 0){
+        pthread_cond_signal(&station->todos_sentados);
+    }
+
+    pthread_mutex_unlock(&station->lock);
+}
