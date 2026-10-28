@@ -1,0 +1,31 @@
+Script started on 2026-10-28 18:26:42-03:00 [COMMAND="date; whoami; pwd; bash" TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="173" LINES="18"]
+Wed Oct 28 18:26:42 -03 2026
+miltonlnx
+/home/miltonlnx/Infra-SFT/Sincronizacao-metro
+[?2004h]0;miltonlnx@Miltoneto: ~/Infra-SFT/Sincronizacao-metro[01;32mmiltonlnx@Miltoneto[00m:[01;34m~/Infra-SFT/Sincronizacao-metro[00m$ make -n
+[?2004lmake[1]: Entering directory '/home/miltonlnx/Infra-SFT/Sincronizacao-metro'
+gcc -Wall -Wextra -pthread -o sync_car sync_car.c sync_car-runner.c
+make[1]: Leaving directory '/home/miltonlnx/Infra-SFT/Sincronizacao-metro'
+[?2004h]0;miltonlnx@Miltoneto: ~/Infra-SFT/Sincronizacao-metro[01;32mmiltonlnx@Miltoneto[00m:[01;34m~/Infra-SFT/Sincronizacao-metro[00m$ make 
+[?2004lmake[1]: Entering directory '/home/miltonlnx/Infra-SFT/Sincronizacao-metro'
+gcc -Wall -Wextra -pthread -o sync_car sync_car.c sync_car-runner.c
+[01m[Ksync_car-runner.c:[m[K In function ‘[01m[Kalarm_handler[m[K’:
+[01m[Ksync_car-runner.c:54:24:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kfoo[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+   54 | void alarm_handler([01;35m[Kint foo[m[K)
+      |                    [01;35m[K~~~~^~~[m[K
+/usr/bin/ld: /tmp/cc3JyYIj.o: in function `passenger_thread':
+sync_car-runner.c:(.text+0x20): undefined reference to `station_wait_for_car'
+/usr/bin/ld: /tmp/cc3JyYIj.o: in function `load_car_thread':
+sync_car-runner.c:(.text+0x5f): undefined reference to `station_load_car'
+/usr/bin/ld: /tmp/cc3JyYIj.o: in function `main':
+sync_car-runner.c:(.text+0x169): undefined reference to `station_load_car'
+/usr/bin/ld: sync_car-runner.c:(.text+0x17d): undefined reference to `station_load_car'
+/usr/bin/ld: sync_car-runner.c:(.text+0x238): undefined reference to `station_load_car'
+/usr/bin/ld: sync_car-runner.c:(.text+0x3fd): undefined reference to `station_on_board'
+collect2: error: ld returned 1 exit status
+make[1]: *** [Makefile:8: sync_car] Error 1
+make[1]: Leaving directory '/home/miltonlnx/Infra-SFT/Sincronizacao-metro'
+[?2004h]0;miltonlnx@Miltoneto: ~/Infra-SFT/Sincronizacao-metro[01;32mmiltonlnx@Miltoneto[00m:[01;34m~/Infra-SFT/Sincronizacao-metro[00m$ exit
+[?2004lexit
+
+Script done on 2026-10-28 18:26:51-03:00 [COMMAND_EXIT_CODE="2"]
