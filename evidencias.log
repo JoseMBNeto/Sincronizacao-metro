@@ -231,3 +231,27 @@ Looks good!
 [?2004lexit
 
 Script done on 2026-10-28 20:42:23-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-10-28 21:08:46-03:00 [COMMAND="date; whoami; pwd; bash" TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="173" LINES="22"]
+Wed Oct 28 21:08:46 -03 2026
+miltonlnx
+/home/miltonlnx/Infra-SFT/Sincronizacao-metro
+[?2004h]0;miltonlnx@Miltoneto: ~/Infra-SFT/Sincronizacao-metro[01;32mmiltonlnx@Miltoneto[00m:[01;34m~/Infra-SFT/Sincronizacao-metro[00m$ make
+[?2004lmake[1]: Entering directory '/home/miltonlnx/Infra-SFT/Sincronizacao-metro'
+gcc -Wall -Wextra -pthread -c sync_car.c -o sync_car.o
+gcc -Wall -Wextra -pthread -Wno-unused-parameter -c sync_car-runner.c -o sync_car-runner.o
+gcc -pthread -o sync_car sync_car.o sync_car-runner.o
+make[1]: Leaving directory '/home/miltonlnx/Infra-SFT/Sincronizacao-metro'
+[?2004h]0;miltonlnx@Miltoneto: ~/Infra-SFT/Sincronizacao-metro[01;32mmiltonlnx@Miltoneto[00m:[01;34m~/Infra-SFT/Sincronizacao-metro[00m$ make clean[6Pexit./sync_car
+[?2004lcar entering station with 22 free seats
+car departed station with 22 new passenger(s) (expected 22)
+car entering station with 20 free seats
+car departed station with 20 new passenger(s) (expected 20)
+car entering station with 35 free seats
+car departed station with 35 new passenger(s) (expected 35)
+car entering station with 39 free seats
+car departed station with 23 new passenger(s) (expected 23)
+Looks good!
+[?2004h]0;miltonlnx@Miltoneto: ~/Infra-SFT/Sincronizacao-metro[01;32mmiltonlnx@Miltoneto[00m:[01;34m~/Infra-SFT/Sincronizacao-metro[00m$ exit
+[?2004lexit
+
+Script done on 2026-10-28 21:08:52-03:00 [COMMAND_EXIT_CODE="0"]
