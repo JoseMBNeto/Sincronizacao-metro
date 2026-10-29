@@ -29,8 +29,7 @@ void station_init(Station *station){
     station->passageiros_embarcando = 0;
 }
 
-void station_wait_for_car(Station *station)
-{
+void station_wait_for_car(Station *station){
     pthread_mutex_lock(&station->lock);
     station->passageiros_esperando++;
 
@@ -44,8 +43,7 @@ void station_wait_for_car(Station *station)
     pthread_mutex_unlock(&station->lock);
 }
 
-void station_on_board(Station *station)
-{
+void station_on_board(Station *station){
     pthread_mutex_lock(&station->lock);
 
     station->passageiros_embarcando--;
@@ -54,5 +52,25 @@ void station_on_board(Station *station)
         pthread_cond_signal(&station->todos_sentados);
     }
 
+    pthread_mutex_unlock(&station->lock);
+}
+
+void station_load_car(Station *station, int count){
+    if (count < 0){
+        count = 0;
+    }    
+
+    pthread_mutex_lock(&station->lock);
+    station->assentos_livres = count;
+
+    if (count > 0){
+        pthread_cond_broadcast(&station->vagao_chegou);
+    }
+
+    while(!(station->passageiros_embarcando == 0 && (station->assentos_livres == 0 || station->passageiros_esperando == 0))){
+        pthread_cond_wait(&station->todos_sentados, &station->lock);
+    }
+
+    station->assentos_livres = 0;
     pthread_mutex_unlock(&station->lock);
 }
